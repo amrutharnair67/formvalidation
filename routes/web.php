@@ -3,6 +3,7 @@
 use illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,11 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     Session::put('message', "logged in successfully");
+    // $request->session()->flash("hello","helloworld");
+    // dd($request->session()->all());
+    Cookie::queue("hello","testing",10);
     return view('welcome');
 });
 
